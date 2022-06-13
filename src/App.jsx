@@ -34,6 +34,16 @@ export function App() {
       <div className="CategoriesColumn col">
         <div className="categories options">
           <h2 className="title">Categories</h2>
+          {categories.map((category,id) =>{
+            return(
+              <Chip 
+              key = {id}
+              label = {category}
+              isActive = {(category === selectedCategory)}
+              onclick = {()=> categoryClick(category)}
+              /> 
+              )
+          })}
         </div>
       </div>
 
@@ -62,7 +72,6 @@ export function App() {
         </div>
 
         {/* INSTRUCTIONS GO HERE */}
-
         <Instructions instructions={appInfo.instructions.start}/>
         {/* MENU DISPLAY */}
         <div className="MenuDisplay display">
