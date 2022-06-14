@@ -113,7 +113,7 @@ export function App() {
               label = {restaurant}
               isActive = {(restaurant === selectedrestaurant)}
               onClick = {()=> restaurantClick(restaurant)}
-              onClose = {(evt)=>{evt.stopPropagation();setSelectedrestaurant(false); }}
+              onClose = {(evt)=>{evt.stopPropagation();setSelectedrestaurant(false);}}
             
               /> 
               )
@@ -136,6 +136,7 @@ export function App() {
                 label={menuItem.item_name}
                 isActive={menuItem===selectedMenuItem}
                 onClick={()=> setSelectedMenuItem(menuItem)}
+                onClose = {(evt)=>{evt.stopPropagation();setSelectedMenuItem(false);}}
                 />
 
               )
