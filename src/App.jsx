@@ -26,20 +26,22 @@ export const appInfo = {
 }
 // or this!
 const { data, categories, restaurants } = createDataSet()
-const categoryClick = () => {
-  setSelectedCategory=(category)=>{
-    setSelectedCategory(categories)
-  }
-}
-const restaurantClick = () => {
-  setSelectedrestaurant=(restaurant)=>{
-  setSelectedrestaurant(restaurant)
-  }
-}
+
+
 
 export function App() {
   const[selectedCategory, setSelectedCategory] = React.useState(null)
   const[selectedrestaurant, setSelectedrestaurant] = React.useState(null)
+
+  const categoryClick = (category) => {
+    setSelectedCategory(category)
+  }
+  
+  const restaurantClick = (restaurant) => {
+    setSelectedrestaurant(restaurant)
+    }
+  
+  
   return (
 
     <main className="App">
