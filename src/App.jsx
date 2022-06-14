@@ -32,7 +32,7 @@ const { data, categories, restaurants } = createDataSet()
 export function App() {
   const[selectedCategory, setSelectedCategory] = React.useState(null)
   const[selectedrestaurant, setSelectedrestaurant] = React.useState(null)
-
+  const[selectedMenuItem,setSelectedMenuItem] = React.useState(null)
   const categoryClick = (category) => {
     setSelectedCategory(category)
   }
@@ -55,7 +55,7 @@ export function App() {
               key = {id}
               label = {category}
               isActive = {(category === selectedCategory)}
-              onclick = {()=> categoryClick(category)}
+              onClick = {()=> categoryClick(category)}
               /> 
               )
           })}
@@ -79,20 +79,33 @@ export function App() {
               key = {id}
               label = {restaurant}
               isActive = {(restaurant === selectedrestaurant)}
-              onclick = {()=> restaurantClick(restaurant)}
+              onClick = {()=> restaurantClick(restaurant)}
               /> 
               )
           })}
           </div>
         </div>
 
-        {/* INSTRUCTIONS GO HERE */}
-        <Instructions instructions={appInfo.instructions.start}/>
+        
+       {InstructionInfo()}
+        
+
         {/* MENU DISPLAY */}
         <div className="MenuDisplay display">
           <div className="MenuItemButtons menu-items">
             <h2 className="title">Menu Items</h2>
-            {/* YOUR CODE HERE */}
+            {currentMenuItems.map((menuItem, idx)=>{
+              return(
+                <Chip
+                key={idx}
+                label={menuItem.item_name}
+                isActive={menuItem===selectedMenuItem}
+                onClick={()=> setSelectedMenuItem(menuItem)}
+                />
+
+              )
+            })}
+
           </div>
 
           {/* NUTRITION FACTS */}
