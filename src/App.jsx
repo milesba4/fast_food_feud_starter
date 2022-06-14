@@ -89,6 +89,7 @@ export function App() {
               label = {category}
               isActive = {(category === selectedCategory)}
               onClick = {()=> categoryClick(category)}
+              onClose = {(evt)=>{evt.stopPropagation();setSelectedCategory(false);}}
               /> 
               )
           })}
