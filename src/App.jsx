@@ -8,6 +8,8 @@ import{Instructions} from "./components/Instructions/Instructions"
 import {useState} from "react"
 import "./components/Chip/Chip"
 import Chip from "./components/Chip/Chip"
+import "./components/NutritionalLabel/NutritionalLabel"
+import NutritionalLabel, { NutritionalLabelFact } from "./components/NutritionalLabel/NutritionalLabel"
 
 
 // don't move this!
@@ -41,6 +43,13 @@ export function App() {
     setSelectedrestaurant(restaurant)
     }
   
+    else if(selectedrestaurant!=null&&selectedCategory!=null&&selectedMenuItem!=null){
+      return <Instructions instructions={appInfo.instructions.allSelected}/>
+    }
+      
+  }
+
+
   
   return (
 
@@ -109,7 +118,11 @@ export function App() {
           </div>
 
           {/* NUTRITION FACTS */}
-          <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE */}</div>
+          <div className="NutritionFacts nutrition-facts">
+
+          {selectedMenuItem!=null ? <NutritionalLabel item={selectedMenuItem}/>: null}
+          
+          </div>
         </div>
 
         <div className="data-sources">
@@ -118,6 +131,6 @@ export function App() {
       </div>
     </main>
   )
-}
 
+}
 export default App
