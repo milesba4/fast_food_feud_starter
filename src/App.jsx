@@ -43,6 +43,26 @@ export function App() {
     setSelectedrestaurant(restaurant)
     }
   
+  const currentMenuItems = data.filter((item)=>{
+    return item.food_category == selectedCategory &&item.restaurant ==selectedrestaurant
+  });
+
+  function InstructionInfo(){
+    if (selectedrestaurant==null&&selectedCategory==null&&selectedMenuItem==null){
+
+      return <Instructions instructions={appInfo.instructions.start}/>
+    }
+    else if(selectedCategory!=null&&selectedrestaurant==null&&selectedMenuItem==null){
+
+      return <Instructions instructions={appInfo.instructions.onlyCategory}/>
+
+    }
+    else if(selectedrestaurant!=null&&selectedCategory!=null&&selectedMenuItem==null){
+      return <Instructions instructions={appInfo.instructions.noSelectedItem}/>
+    } 
+    else if(selectedrestaurant!=null&&selectedCategory==null&&selectedMenuItem==null){
+      return <Instructions instructions={appInfo.instructions.onlyRestaurant}/>
+    }
     else if(selectedrestaurant!=null&&selectedCategory!=null&&selectedMenuItem!=null){
       return <Instructions instructions={appInfo.instructions.allSelected}/>
     }
@@ -51,6 +71,10 @@ export function App() {
 
 
   
+  
+    
+  
+
   return (
 
     <main className="App">
@@ -89,6 +113,8 @@ export function App() {
               label = {restaurant}
               isActive = {(restaurant === selectedrestaurant)}
               onClick = {()=> restaurantClick(restaurant)}
+              onClose = {(evt)=>{evt.stopPropagation();setSelectedrestaurant(false); }}
+            
               /> 
               )
           })}
